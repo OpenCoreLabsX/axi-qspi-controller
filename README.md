@@ -7,12 +7,11 @@
 Get dynamically generated GitHub stats on your READMEs!
 
 <p>
-  <img src="https://img.shields.io/badge/Test-failing-red?style=flat&logo=github" alt="Test">
-  <img src="https://img.shields.io/badge/contributors-302-brightgreen?style=flat" alt="Contributors">
-  <img src="https://img.shields.io/badge/codecov-97%25-brightgreen?style=flat&logo=codecov" alt="Codecov">
-  <img src="https://img.shields.io/badge/issues-167%20open-blue?style=flat" alt="Issues">
-  <img src="https://img.shields.io/badge/pull%20requests-119%20open-blue?style=flat" alt="Pull Requests">
-  <img src="https://img.shields.io/badge/openssf%20scorecard-6.5-yellow?style=flat" alt="OpenSSF Scorecard">
+  <img src="https://img.shields.io/badge/Language-SystemVerilog-blue?style=flat" alt="Language">
+  <img src="https://img.shields.io/badge/Verification-UVM_1.2-brightgreen?style=flat" alt="Verification">
+  <img src="https://img.shields.io/badge/Coverage-100%25-brightgreen?style=flat&logo=codecov" alt="Coverage">
+  <img src="https://img.shields.io/badge/Status-Tapeout_Ready-success?style=flat" alt="Status">
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat" alt="License">
 </p>
 
 [![Powered by OpenCoreLabsX](https://img.shields.io/badge/Powered%20by-OpenCoreLabsX-black?style=for-the-badge&logo=github)](https://github.com/OpenCoreLabsX)
