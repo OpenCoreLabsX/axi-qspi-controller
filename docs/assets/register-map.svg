@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="260" viewBox="0 0 960 260">
+  <rect width="960" height="260" fill="#f8fafc"/>
+  <style>
+    .h{font:700 18px Arial;fill:#111827}
+    .t{font:12px Consolas,monospace;fill:#111827}
+    .r{fill:#fff;stroke:#d8dee8}
+    .b{fill:#2563eb}
+    .g{fill:#16a34a}
+    .w{fill:#f59e0b}
+  </style>
+  <text class="h" x="32" y="34">AXI QSPI Register Map</text>
+  <g transform="translate(32,58)">
+    <rect class="r" x="0" y="0" width="130" height="44"/><text class="t" x="18" y="27">0x00 CTRL</text>
+    <rect class="r" x="130" y="0" width="130" height="44"/><text class="t" x="146" y="27">0x04 STATUS</text>
+    <rect class="r" x="260" y="0" width="130" height="44"/><text class="t" x="278" y="27">0x08 CLKDIV</text>
+    <rect class="r" x="390" y="0" width="130" height="44"/><text class="t" x="412" y="27">0x0C MODE</text>
+    <rect class="r" x="520" y="0" width="130" height="44"/><text class="t" x="544" y="27">0x10 CMD</text>
+    <rect class="r" x="650" y="0" width="180" height="44"/><text class="t" x="682" y="27">0x14 FLASH_ADDR</text>
+    <rect class="r" x="0" y="54" width="130" height="44"/><text class="t" x="22" y="81">0x18 LEN</text>
+    <rect class="r" x="130" y="54" width="130" height="44"/><text class="t" x="150" y="81">0x1C DUMMY</text>
+    <rect class="r" x="260" y="54" width="130" height="44"/><text class="t" x="278" y="81">0x20 TXDATA</text>
+    <rect class="r" x="390" y="54" width="130" height="44"/><text class="t" x="408" y="81">0x24 RXDATA</text>
+    <rect class="r" x="520" y="54" width="130" height="44"/><text class="t" x="538" y="81">0x28 IRQ_EN</text>
+    <rect class="r" x="650" y="54" width="180" height="44"/><text class="t" x="684" y="81">0x2C IRQ_STAT</text>
+    <rect class="r" x="0" y="108" width="130" height="44"/><text class="t" x="16" y="135">0x30 VERSION</text>
+    <rect class="r" x="130" y="108" width="130" height="44"/><text class="t" x="148" y="135">0x34 XIP_CTRL</text>
+    <rect class="r" x="260" y="108" width="130" height="44"/><text class="t" x="276" y="135">0x38 XIP_BASE</text>
+    <rect class="r" x="390" y="108" width="130" height="44"/><text class="t" x="406" y="135">0x3C XIP_MASK</text>
+    <rect class="r" x="520" y="108" width="130" height="44"/><text class="t" x="542" y="135">0x40 XIP_CMD</text>
+    <rect class="r" x="650" y="108" width="180" height="44"/><text class="t" x="682" y="135">0x44 XIP_MODE</text>
+  </g>
+</svg>

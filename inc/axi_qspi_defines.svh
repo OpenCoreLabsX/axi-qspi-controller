@@ -1,0 +1,6 @@
+`ifndef AXI_QSPI_DEFINES_SVH
+`define AXI_QSPI_DEFINES_SVH
+
+`define AXI_QSPI_VERSION 32'h0001_0000
+
+`endif

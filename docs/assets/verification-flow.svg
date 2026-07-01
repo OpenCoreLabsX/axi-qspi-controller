@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="250" viewBox="0 0 960 250">
+  <rect width="960" height="250" fill="#f8fafc"/>
+  <defs>
+    <style>
+      .box{fill:#fff;stroke:#2563eb;stroke-width:2;rx:8}
+      .txt{font:700 15px Arial;fill:#111827}
+      .sm{font:12px Arial;fill:#475569}
+      .arr{stroke:#0f172a;stroke-width:2;marker-end:url(#a)}
+    </style>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0f172a"/></marker>
+  </defs>
+  <rect class="box" x="38" y="78" width="140" height="82"/><text class="txt" x="78" y="112">Test</text><text class="sm" x="68" y="136">directed UVM</text>
+  <rect class="box" x="228" y="78" width="140" height="82"/><text class="txt" x="264" y="112">Sequence</text><text class="sm" x="260" y="136">AXI ops</text>
+  <rect class="box" x="418" y="78" width="140" height="82"/><text class="txt" x="458" y="112">Driver</text><text class="sm" x="448" y="136">AW/W/AR/R</text>
+  <rect class="box" x="608" y="78" width="140" height="82"/><text class="txt" x="646" y="112">DUT</text><text class="sm" x="636" y="136">axi_qspi</text>
+  <rect class="box" x="798" y="78" width="140" height="82"/><text class="txt" x="830" y="112">Monitor</text><text class="sm" x="824" y="136">scoreboard</text>
+  <line class="arr" x1="178" y1="119" x2="228" y2="119"/>
+  <line class="arr" x1="368" y1="119" x2="418" y2="119"/>
+  <line class="arr" x1="558" y1="119" x2="608" y2="119"/>
+  <line class="arr" x1="748" y1="119" x2="798" y2="119"/>
+</svg>

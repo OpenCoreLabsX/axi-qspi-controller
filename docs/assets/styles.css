@@ -1,0 +1,97 @@
+:root {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --ink: #111827;
+  --muted: #64748b;
+  --line: #d8dee8;
+  --nav: #0f1117;
+  --accent: #2563eb;
+  --ok: #16a34a;
+  --warn: #f59e0b;
+  --err: #dc2626;
+  --code: #0d1117;
+  --mono: Consolas, "Cascadia Code", monospace;
+  --sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font: 15px/1.65 var(--sans);
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.app { display: grid; grid-template-columns: 288px minmax(0, 1fr); min-height: 100vh; }
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 24px 18px;
+  color: #cbd5e1;
+  background: var(--nav);
+  overflow: auto;
+}
+.brand { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; margin-bottom: 20px; }
+.logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #16a34a);
+  font: 900 13px/1 var(--mono);
+}
+.brand h1 { margin: 0; color: #fff; font-size: 15px; line-height: 1.25; }
+.brand p { margin: 2px 0 0; color: #94a3b8; font-size: 12px; }
+.nav-title { margin: 18px 8px 8px; color: #94a3b8; font-size: 11px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.nav a { display: block; padding: 8px 10px; border-radius: 8px; color: #cbd5e1; }
+.nav a:hover { color: #fff; background: #1e2230; text-decoration: none; }
+.main { min-width: 0; }
+.hero {
+  padding: 54px clamp(22px, 6vw, 76px) 34px;
+  color: #fff;
+  background: linear-gradient(120deg, rgba(15,17,23,.98), rgba(15,17,23,.88)), #0f1117;
+}
+.hero h2 { margin: 0; max-width: 880px; font-size: clamp(36px, 5vw, 64px); line-height: 1.03; }
+.hero p { max-width: 840px; color: #cbd5e1; font-size: 18px; }
+.tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.tag, .badge { display: inline-flex; align-items: center; min-height: 26px; padding: 4px 9px; border-radius: 999px; font-size: 12px; font-weight: 900; }
+.tag { color: #dbeafe; border: 1px solid rgba(147,197,253,.38); background: rgba(37,99,235,.16); }
+.badge.ok { color: #dcfce7; background: var(--ok); }
+.badge.warn { color: #111827; background: var(--warn); }
+.content { padding: 36px clamp(22px, 6vw, 76px) 80px; }
+section { max-width: 1180px; margin: 0 auto 52px; scroll-margin-top: 24px; }
+section h2 { margin: 0 0 10px; font-size: 32px; line-height: 1.18; }
+.lead { max-width: 920px; margin: 0 0 18px; color: var(--muted); font-size: 16px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.card, .table-wrap, .svg-frame, .callout {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .08);
+}
+.card { padding: 18px; }
+.card h3 { margin: 0 0 8px; font-size: 18px; }
+.card p { margin: 0; color: var(--muted); }
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; min-width: 780px; border-collapse: collapse; }
+th, td { padding: 11px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { background: #eef2f7; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+tr:last-child td { border-bottom: 0; }
+code, pre { font-family: var(--mono); }
+code { padding: 2px 5px; border-radius: 5px; background: #eef2f7; }
+pre { overflow: auto; padding: 16px; color: #d1d9e6; background: var(--code); border-radius: 8px; }
+.svg-frame { padding: 16px; overflow-x: auto; }
+.svg-frame img { min-width: 760px; max-width: 100%; }
+.callout { padding: 14px 16px; border-left: 5px solid var(--accent); }
+.callout.warn { border-left-color: var(--warn); }
+footer { max-width: 1180px; margin: 60px auto 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+@media (max-width: 900px) {
+  .app { display: block; }
+  .sidebar { position: static; height: auto; }
+  .grid { grid-template-columns: 1fr; }
+}

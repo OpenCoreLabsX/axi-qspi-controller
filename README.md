@@ -1,0 +1,48 @@
+# AXI QSPI Controller IP Core
+
+AXI QSPI controller RTL written in SystemVerilog for MCU, SoC, and RISC-V based systems.
+
+## Features
+
+| Item | Description |
+| --- | --- |
+| Control interface | AXI4-Full register interface |
+| Memory interface | AXI4 memory-mapped read interface |
+| XIP | Execute-in-place read window with base/mask decode |
+| XIP fast path | Quad I/O read command and continuous-read mode byte support |
+| Flash modes | Standard SPI, Dual SPI, Quad SPI |
+| Clocking | Configurable SPI clock divider |
+| Commands | Read, program, erase, write-enable, status/config, and JEDEC ID command constants |
+| Data path | TX/RX FIFO for command data transfer |
+| Interrupts | Transfer done and error events |
+| Status flags | Busy, done, error, TX empty, RX valid |
+
+## XIP Registers
+
+| Address | Name | Description |
+| --- | --- | --- |
+| `0x34` | `XIP_CTRL` | Bit 0 enables memory-mapped XIP reads |
+| `0x38` | `XIP_BASE` | AXI memory window base address |
+| `0x3C` | `XIP_MASK` | AXI address mask used for XIP hit decode |
+| `0x40` | `XIP_CMD` | Optional read command override, 0 selects mode default |
+| `0x44` | `XIP_MODE` | Bit 8 enables continuous-read mode byte, bits 7:0 hold the mode byte, default `0xA0` |
+
+When XIP is enabled in Quad mode and `XIP_CMD` is zero, the memory interface selects
+Quad I/O read command `0xEB` when `XIP_MODE[8]` is set. Clearing `XIP_MODE[8]`
+selects the simpler Quad Output read command `0x6B`.
+
+## Repository Structure
+
+```text
+.
+|-- inc/        Global defines
+|-- rtl/        Synthesizable AXI QSPI RTL
+|-- filelist.f  RTL compile filelist
+`-- Makefile    Verilator lint target
+```
+
+## Build
+
+```sh
+make lint
+```

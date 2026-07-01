@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AXI QSPI Controller IP Core</title>
+  <meta name="description" content="Vendor documentation for the AXI QSPI Controller RTL IP core with XIP and UVM verification.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">QSPI</div>
+        <div>
+          <h1>AXI QSPI Controller</h1>
+          <p>Vendor documentation</p>
+        </div>
+      </div>
+      <div class="nav-title">Navigation</div>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#interface">Top Interface</a>
+        <a href="#registers">Register Map</a>
+        <a href="#xip">XIP</a>
+        <a href="#verification">Verification</a>
+        <a href="#integration">Integration</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <h2>AXI QSPI Controller IP Core</h2>
+        <p>
+          Synthesizable SystemVerilog QSPI controller with AXI register control,
+          AXI memory-mapped XIP read path, SPI/Dual/Quad transfer support,
+          FIFO data path, interrupt events, and UVM bring-up verification.
+        </p>
+        <div class="tags">
+          <span class="tag">AXI register interface</span>
+          <span class="tag">AXI XIP read</span>
+          <span class="tag">SPI / Dual / Quad</span>
+          <span class="tag">0xEB Quad I/O read</span>
+          <span class="tag">UVM smoke regression</span>
+        </div>
+      </header>
+
+      <div class="content">
+        <section id="overview">
+          <h2>Overview</h2>
+          <p class="lead">
+            The AXI QSPI Controller provides a register-programmed QSPI flash command engine
+            and a memory-mapped read window for execute-in-place style flash access.
+          </p>
+          <div class="grid">
+            <div class="card"><h3>Control</h3><p>AXI register access controls command, address, length, dummy cycles, mode, FIFO, IRQ, and XIP setup.</p></div>
+            <div class="card"><h3>Flash Modes</h3><p>Standard SPI, Dual SPI, and Quad SPI lanes are selected through the MODE register.</p></div>
+            <div class="card"><h3>XIP</h3><p>Base/mask decode accepts AXI read bursts and converts them into QSPI flash reads.</p></div>
+          </div>
+        </section>
+
+        <section id="architecture">
+          <h2>Architecture</h2>
+          <p class="lead">The wrapper arbitrates between register-driven transfers and the XIP memory read path before driving the shared QSPI core.</p>
+          <div class="svg-frame"><img src="assets/architecture.svg" alt="AXI QSPI architecture"></div>
+        </section>
+
+        <section id="interface">
+          <h2>Top Interface</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Group</th><th>Signals</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>Clock/reset</td><td><code>i_qspi_aclk</code>, <code>i_qspi_aresetn</code></td><td>Single synchronous clock domain and active-low reset.</td></tr>
+                <tr><td>AXI register</td><td><code>i_qspi_s_*</code>, <code>o_qspi_s_*</code></td><td>Configuration, status, FIFO, and IRQ register access.</td></tr>
+                <tr><td>AXI memory</td><td><code>i_qspi_m_ar*</code>, <code>o_qspi_m_r*</code></td><td>Read-only XIP window for external flash data.</td></tr>
+                <tr><td>QSPI pins</td><td><code>o_qspi_sclk</code>, <code>o_qspi_cs_n</code>, <code>i/o_qspi_io_*</code></td><td>Pad-wrapper friendly IO split into input, output, and output-enable.</td></tr>
+                <tr><td>Interrupt</td><td><code>o_qspi_irq</code></td><td>OR of enabled done/error events.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="registers">
+          <h2>Register Map</h2>
+          <div class="svg-frame"><img src="assets/register-map.svg" alt="AXI QSPI register map"></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Offset</th><th>Name</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td><code>0x00</code></td><td>CTRL</td><td>Bit 0 starts a transfer, bits 2:1 select read/program/erase, bit 8 clears FIFOs.</td></tr>
+                <tr><td><code>0x04</code></td><td>STATUS</td><td>Busy, done, error, TX empty, RX valid, and XIP active flags.</td></tr>
+                <tr><td><code>0x08</code></td><td>CLKDIV</td><td>SPI clock divider.</td></tr>
+                <tr><td><code>0x0C</code></td><td>MODE</td><td>0: SPI, 1: Dual, 2: Quad.</td></tr>
+                <tr><td><code>0x10</code></td><td>CMD</td><td>Manual flash command byte.</td></tr>
+                <tr><td><code>0x14</code></td><td>FLASH_ADDR</td><td>Manual transfer flash address.</td></tr>
+                <tr><td><code>0x18</code></td><td>LEN</td><td>Transfer length in bytes.</td></tr>
+                <tr><td><code>0x1C</code></td><td>DUMMY</td><td>Dummy cycles before data phase.</td></tr>
+                <tr><td><code>0x20</code></td><td>TXDATA</td><td>TX FIFO write port.</td></tr>
+                <tr><td><code>0x24</code></td><td>RXDATA</td><td>RX FIFO read port.</td></tr>
+                <tr><td><code>0x28</code></td><td>IRQ_EN</td><td>Enable done/error interrupts.</td></tr>
+                <tr><td><code>0x2C</code></td><td>IRQ_STAT</td><td>Pending interrupt bits, write one to clear.</td></tr>
+                <tr><td><code>0x30</code></td><td>VERSION</td><td>IP version value <code>0x0001_0000</code>.</td></tr>
+                <tr><td><code>0x34-0x44</code></td><td>XIP</td><td>XIP enable, base, mask, command override, and mode byte.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="xip">
+          <h2>XIP</h2>
+          <p class="lead">
+            When <code>XIP_CTRL[0]</code> is set, the memory interface accepts AXI reads that match
+            <code>(ARADDR & XIP_MASK) == (XIP_BASE & XIP_MASK)</code>. In Quad mode with
+            <code>XIP_CMD == 0</code> and <code>XIP_MODE[8] == 1</code>, the memory path selects
+            Quad I/O read command <code>0xEB</code> and emits mode byte <code>0xA0</code>.
+          </p>
+          <div class="callout warn">
+            <strong>Note</strong>
+            The current XIP implementation is a functional read path. A production flash subsystem
+            should add command-level flash modeling, WIP polling, and reset-recovery coverage.
+          </div>
+        </section>
+
+        <section id="verification">
+          <h2>Verification</h2>
+          <p class="lead">The UVM environment mirrors the AES IP folder style and includes directed bring-up tests for registers, XIP setup, FIFO/IRQ smoke behavior, and AXI AW/W skew.</p>
+          <div class="svg-frame"><img src="assets/verification-flow.svg" alt="AXI QSPI UVM verification flow"></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Test</th><th>Coverage Goal</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><code>axi_qspi_reg_test</code></td><td>VERSION and register R/W behavior.</td><td><span class="badge ok">READY</span></td></tr>
+                <tr><td><code>axi_qspi_xip_test</code></td><td>XIP base/mask/cmd/mode-byte programming.</td><td><span class="badge ok">READY</span></td></tr>
+                <tr><td><code>axi_qspi_axi_skew_test</code></td><td>AW/W independent handshake and WSTRB byte writes.</td><td><span class="badge ok">READY</span></td></tr>
+                <tr><td><code>axi_qspi_fifo_irq_test</code></td><td>TX FIFO and done/IRQ smoke flow.</td><td><span class="badge warn">SMOKE</span></td></tr>
+                <tr><td><code>axi_qspi_all_test</code></td><td>Directed regression wrapper.</td><td><span class="badge ok">READY</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre><code>make lint
+make uvm_compile
+make uvm_run UVM_TEST=axi_qspi_all_test</code></pre>
+        </section>
+
+        <section id="integration">
+          <h2>Integration Notes</h2>
+          <div class="grid">
+            <div class="card"><h3>ASIC IO</h3><p>The RTL exposes IO input/output/OE. Connect real pads in the chip wrapper; do not instantiate standard cells as IO pads.</p></div>
+            <div class="card"><h3>AXI</h3><p>The register block supports independent AW/W acceptance and WSTRB byte updates. The memory path is read-only.</p></div>
+            <div class="card"><h3>Software</h3><p>Configure clock divider, mode, dummy cycles, command/address/length, then assert CTRL.START or enable XIP for memory reads.</p></div>
+          </div>
+        </section>
+
+        <footer>
+          <strong>AXI QSPI Controller IP Core</strong> - Version <code>0x0001_0000</code> - Generated for GitHub Pages.
+        </footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
