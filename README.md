@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="banner.png" alt="OpenCoreLabsX Banner" width="100%">
+
 # GitHub Readme Stats
 
 Get dynamically generated GitHub stats on your READMEs!
