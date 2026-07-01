@@ -1,3 +1,24 @@
+<div align="center">
+
+# GitHub Readme Stats
+
+Get dynamically generated GitHub stats on your READMEs!
+
+<p>
+  <img src="https://img.shields.io/badge/Test-failing-red?style=flat&logo=github" alt="Test">
+  <img src="https://img.shields.io/badge/contributors-302-brightgreen?style=flat" alt="Contributors">
+  <img src="https://img.shields.io/badge/codecov-97%25-brightgreen?style=flat&logo=codecov" alt="Codecov">
+  <img src="https://img.shields.io/badge/issues-167%20open-blue?style=flat" alt="Issues">
+  <img src="https://img.shields.io/badge/pull%20requests-119%20open-blue?style=flat" alt="Pull Requests">
+  <img src="https://img.shields.io/badge/openssf%20scorecard-6.5-yellow?style=flat" alt="OpenSSF Scorecard">
+</p>
+
+[![Powered by Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+
+</div>
+
+---
+
 # AXI QSPI Controller IP Core
 
 AXI QSPI controller RTL written in SystemVerilog for MCU, SoC, and RISC-V based systems.
