@@ -15,7 +15,7 @@ Get dynamically generated GitHub stats on your READMEs!
   <img src="https://img.shields.io/badge/openssf%20scorecard-6.5-yellow?style=flat" alt="OpenSSF Scorecard">
 </p>
 
-[![Powered by Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+[![Powered by OpenCoreLabsX](https://img.shields.io/badge/Powered%20by-OpenCoreLabsX-black?style=for-the-badge&logo=github)](https://github.com/OpenCoreLabsX)
 
 </div>
 
