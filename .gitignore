@@ -1,0 +1,30 @@
+# Compiled Objects
+*.o
+*.obj
+*.so
+*.dll
+
+# ModelSim/Questa
+work/
+transcript
+vsim.wlf
+*.wlf
+modelsim.ini
+wlft*
+*.ucdb
+covhtmlreport/
+
+# Verilator
+obj_dir/
+
+# Simulator logs
+*.log
+sim/
+reports/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+.DS_Store
+.rtl_filelist.f
