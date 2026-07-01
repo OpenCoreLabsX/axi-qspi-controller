@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="banner.png" alt="OpenCoreLabsX Banner" width="100%">
+<img src="https://raw.githubusercontent.com/OpenCoreLabsX/apb-usart-core/36a802fc11f9a65acace85c78b591b82f889031f/banner.png" alt="OpenCoreLabsX Banner" width="100%">
 
 # GitHub Readme Stats
 
